@@ -102,10 +102,8 @@ const data = [
 
     <span class="expandButton">+</span>
   </div> */
-  const container = document.querySelector('.articles');
 
-function articleMaker({article}){
-    // create elements
+function articleMaker(article){
     const divCon = document.createElement('div');
     const header2 = document.createElement('h2');
     const para1 = document.createElement('p');
@@ -122,20 +120,31 @@ function articleMaker({article}){
     divCon.appendChild(header2);
     divCon.appendChild(para1, para2, para3);
     divCon.appendChild(spanElem);
+    //adding content
+    header2.textContent = article.title;
+    para1.textContent = article.date;
+    para1.textContent = article.firstParagraph;
+    para2.textContent = article.date;
+    para2.textContent = article.secondParagraph;
+    para3.textContent = article.date;
+    para3.textContent = article.thirdParagraph;
+    spanElem.textContent = '+';
     // add event listener
     spanElem.addEventListener('click', event => {
       divCon.classList.toggle('article-open');
     });
-
-    return article;
-
+    return divCon;
   }
 
-  console.log(container);
-data.forEach(article =>{
-  const divElem = articleMaker(article);
-  container.appendChild(divElem);
+const newArticle = data.map(article => {
+  return articleMaker(article);
 });
+
+newArticle.forEach(article =>{
+  document.querySelector('.articles').append(article);
+});
+
+
 
   
 
