@@ -133,6 +133,7 @@ function articleMaker(article){
     spanElem.addEventListener('click', event => {
       divCon.classList.toggle('article-open');
     });
+    
     return divCon;
   }
 
